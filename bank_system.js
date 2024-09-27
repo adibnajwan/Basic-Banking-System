@@ -1,43 +1,33 @@
-class BankAccount {
-    constructor() {
-      this.saldo = 0;
-    }
-  
-    // Menambah saldo dengan validasi dan error handling
-    deposit(amount) {
-      try {
-        if (isNaN(amount) || amount <= 0) {
-          throw new Error("Jumlah tidak valid! Masukkan angka positif.");
-        }
-        console.log("Proses penambahan saldo...");
-        setTimeout(() => {
-          this.saldo += amount;
-          console.log(`Saldo berhasil ditambahkan! Saldo saat ini: Rp${this.saldo}`);
-        }, 2000); // Transaksi terjadi dalam 2 detik
-      } catch (error) {
-        console.error("Error pada deposit:", error.message);
+let akun = new BankAccount(); // Membuat objek BankAccount
+
+function tambahSaldo() {
+    var jumlah = prompt("Masukkan jumlah yang ingin ditambahkan:");
+    try {
+        let newSaldo = akun.deposit(parseFloat(jumlah));
+        document.getElementById("saldo").innerText = `Saldo: Rp${newSaldo}`;
+    } catch (error) {
         alert(error.message);
-      }
     }
-  
-    // Mengurangi saldo dengan validasi dan error handling
-    withdraw(amount) {
-      try {
-        if (isNaN(amount) || amount <= 0) {
-          throw new Error("Jumlah tidak valid! Masukkan angka positif.");
-        }
-        if (amount > this.saldo) {
-          throw new Error("Saldo tidak mencukupi!");
-        }
-        console.log("Proses pengurangan saldo...");
-        setTimeout(() => {
-          this.saldo -= amount;
-          console.log(`Saldo berhasil dikurangi! Saldo saat ini: Rp${this.saldo}`);
-        }, 2000); // Transaksi terjadi dalam 2 detik
-      } catch (error) {
-        console.error("Error pada withdraw:", error.message);
+}
+
+function kurangiSaldo() {
+    var jumlah = prompt("Masukkan jumlah yang ingin dikurangi:");
+    try {
+        let newSaldo = akun.withdraw(parseFloat(jumlah));
+        document.getElementById("saldo").innerText = `Saldo: Rp${newSaldo}`;
+    } catch (error) {
         alert(error.message);
-      }
     }
-  }
-  
+}
+
+function login() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    if (username === "adib" && password === "123") {
+        document.getElementById("login-section").style.display = "none";
+        document.getElementById("bank-section").style.display = "block";
+    } else {
+        alert("Username atau password salah!");
+    }
+}
