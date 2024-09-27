@@ -1,39 +1,26 @@
-// Variabel untuk saldo awal
-var saldo = 0;
-
-// Fungsi untuk menambah saldo
-function tambahSaldo() {
-  var jumlah = prompt("Masukkan jumlah yang ingin ditambahkan:");
-  if (jumlah == "" || isNaN(jumlah) || jumlah <= 0) {
-    alert("Jumlah tidak valid!");
-  } else {
-    saldo += parseFloat(jumlah);
-    alert("Saldo berhasil ditambahkan! Saldo saat ini: Rp" + saldo);
-    document.getElementById("saldo").innerText = "Saldo: Rp" + saldo;
+class BankAccount {
+  constructor() {
+      this.saldo = 0;
   }
-}
 
-// Fungsi untuk mengurangi saldo
-function kurangiSaldo() {
-  var jumlah = prompt("Masukkan jumlah yang ingin dikurangi:");
-  if (jumlah == "" || isNaN(jumlah) || jumlah <= 0 || jumlah > saldo) {
-    alert("Jumlah tidak valid atau saldo tidak cukup!");
-  } else {
-    saldo -= parseFloat(jumlah);
-    alert("Saldo berhasil dikurangi! Saldo saat ini: Rp" + saldo);
-    document.getElementById("saldo").innerText = "Saldo: Rp" + saldo;
+  deposit(amount) {
+      if (isNaN(amount) || amount <= 0) {
+          throw new Error("Jumlah tidak valid! Masukkan angka positif.");
+      }
+      this.saldo += amount;
+      console.log(`Saldo berhasil ditambahkan! Saldo saat ini: Rp${this.saldo}`);
+      return this.saldo; // Kembalikan saldo saat ini
   }
-}
 
-// Fungsi login
-function login() {
-  var username = document.getElementById("username").value;
-  var password = document.getElementById("password").value;
-
-  if (username === "adib" && password === "123") {
-    document.getElementById("login-section").style.display = "none";
-    document.getElementById("bank-section").style.display = "block";
-  } else {
-    alert("Username atau password salah!");
+  withdraw(amount) {
+      if (isNaN(amount) || amount <= 0) {
+          throw new Error("Jumlah tidak valid! Masukkan angka positif.");
+      }
+      if (amount > this.saldo) {
+          throw new Error("Saldo tidak mencukupi!");
+      }
+      this.saldo -= amount;
+      console.log(`Saldo berhasil dikurangi! Saldo saat ini: Rp${this.saldo}`);
+      return this.saldo; // Kembalikan saldo saat ini
   }
 }
