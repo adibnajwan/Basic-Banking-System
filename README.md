@@ -27,3 +27,6 @@ Alur program bank_account.js dan bank_system.js
         - Tampilkan saldo baru.
         - Kembali ke Tampilkan Menu Utama.
 8. Selesai: Sistem berakhir saat pengguna memilih untuk keluar.
+
+![image](flowchart.jpg)
+
